@@ -11,7 +11,7 @@ var routes=[
         main: ()=><HomePage />
     },{
         path:'/product-list',
-        exact:false,
+        exact:true,
         main: ()=><ProductListPage />
     },
     {
@@ -20,9 +20,9 @@ var routes=[
         main: ()=><ProductActionPage />
     },,
     {
-        path:'/product/edit/:id',
+        path:'/product/:id/edit',
         exact:false,
-        main: ()=><ProductActionPage />
+        main: ({match})=><ProductActionPage match={match}/>
     },
     {
         path:'',
