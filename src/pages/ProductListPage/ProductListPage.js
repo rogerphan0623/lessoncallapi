@@ -1,39 +1,35 @@
 import React from 'react';
+import ProductList from '../../components/ProductList/ProductList';
+import ProductItem from '../../components/ProductItem/ProductItem';
+import {connect} from 'react-redux';
 
-class ProductActionPage extends React.Component {
+class ProductListPage extends React.Component {
     render() {
-        var products = [];
+        var {products} = this.props;
         return (
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                <form>
-                    <legend>Form title</legend>
-
-                    <div className="form-group">
-                        <label>Tên Sản Phẩm: </label>
-                        <input type="text" className="form-control" />
-                    </div>
-                    <div className="form-group">
-                        <label>Giá: </label>
-                        <input type="number" className="form-control" />
-                    </div>
-                    <div className="form-group">
-                        <label>Trạng thái: </label>
-                    </div>
-
-                    <div className="checkbox">
-                        <label>
-                            <input type="checkbox" />
-                            Còn Hàng
-                        </label>
-                    </div>
-
-                    <button type="submit" className="btn btn-primary">Lưu lại</button>
-                </form>
+                <button type="button" className="btn btn-info">Thêm Sản Phẩm</button>
+               <ProductList>
+                   {this.showProducts(products)}
+               </ProductList>
 
             </div>
         );
     }
+    showProducts(products) {
+        var result = null;
+        if (products.length > 0) {
+            result = products.map((product, index) => {
+                return <ProductItem key={index} product={product} index={index} />
+            })
+        }
+        return result;
+    }
 }
-
-export default ProductActionPage;
+const mapStatetoProps=state=>{
+    return {
+        products: state.products
+    }
+}
+export default connect(mapStatetoProps,null)(ProductListPage);
