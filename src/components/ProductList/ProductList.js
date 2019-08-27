@@ -16,7 +16,7 @@ class ProductList extends React.Component {
                         <th>Tên</th>
                         <th>Giá</th>
                         <th>Trạng Thái</th>
-                        <th>Hàn Động</th>
+                        <th>Hành Động</th>
                       </tr>
                     </thead>
                     <tbody>

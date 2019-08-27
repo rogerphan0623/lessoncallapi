@@ -1,6 +1,17 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class ProductItem extends React.Component {
+  constructor(props){
+    super(props)
+  }
+  onDelete=(id)=>{
+
+    if(confirm('Bạn có chắc chắn muốn xóa không?')){ //eslint-disable-line
+      this.props.onDelete(id);
+    }
+    
+  }
   render() {
     var {product,index}=this.props;
     var statusName=product.status?'Còn Hàng':'Hết Hàng';
@@ -15,9 +26,9 @@ class ProductItem extends React.Component {
           <span className={`label label-${statusClass}`}>{statusName}</span>
         </td>
         <td>
-          <button type="button" className="btn btn-success mr-10">Sửa</button>
+          <Link to={`/product/${product.id}/edit`} className="btn btn-success mr-10">Sửa</Link>
 
-          <button type="button" className="btn btn-danger">Xóa</button>
+          <button type="button" className="btn btn-danger" onClick={()=>this.onDelete(product.id)}>Xóa</button>
 
         </td>
       </tr>
